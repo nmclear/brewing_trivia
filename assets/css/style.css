@@ -1,0 +1,15 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    text-align: center;
+    background: black;
+}
+
+
+.container {
+    width: 80%;
+    background: skyblue;
+}
+
