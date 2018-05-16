@@ -14,12 +14,12 @@ $(document).ready(function() {
     var totalCorrect = 0;
     var totalWrong = 0;
 
-    var questionBankArr = [];
+    var questionBankArr = [question1, question2, question3, question4];
     var answerBankArr = [];
 
     var question1 = {
         question: "Which is NOT one of the four main beer ingredients?",
-        correctAnswer: "",
+        correctAnswer: "Grapes",
         wrongAnswer1: "Hops",
         wrongAnswer2: "Barley",
         wrongAnswer3: "Yeast"
@@ -59,15 +59,13 @@ $(document).ready(function() {
     function startGame() {
         console.log("game started");
         intervalId = setInterval(countdown, SECOND);
-
+        nextQuestion();
     }
-
-
 
     function countdown() {
         if (time >= 0) {
             console.log(time);
-            $("#timer").text(time + " seconds");
+            $('#timer').text(time + ' seconds');
             time--;
         }
         else {
@@ -77,12 +75,14 @@ $(document).ready(function() {
 
 
 
-
-
-
-
     function nextQuestion() {
-
+        // Display Question
+            $('#roundQuestion').text(question1.question);
+        // Display answers at random 4 spaces
+            $('.answer1').text(question1.correctAnswer);
+            $('.answer2').text(question1.wrongAnswer1);
+            $('.answer3').text(question1.wrongAnswer2);
+            $('.answer4').text(question1.wrongAnswer3);
     }
 
 
@@ -109,6 +109,7 @@ $(document).ready(function() {
     });
 
     $('.answerButton').click(function(){
+        
         checkAnswer();
     });
 
