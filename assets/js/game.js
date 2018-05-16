@@ -58,7 +58,7 @@ $(document).ready(function() {
 
     function startGame() {
         console.log("game started");
-        intervalId = setInterval(countdown, SECOND);
+        // intervalId = setInterval(countdown, SECOND);
         nextQuestion();
     }
 
@@ -76,6 +76,10 @@ $(document).ready(function() {
 
 
     function nextQuestion() {
+        //Start Round
+        time = 30;
+        intervalId = setInterval(countdown, SECOND);
+
         // Display Question
             $('#roundQuestion').text(question1.question);
         // Display answers at random 4 spaces
@@ -86,12 +90,14 @@ $(document).ready(function() {
     }
 
 
-    function checkAnswer() {
-        if(userAnswer === correctAnswer){
+    function checkAnswer(userAnswer) {
+        if(userAnswer === question1.correctAnswer){
             totalCorrect++;
+            alert("Correct");
         }
         else {
             totalWrong++;
+            alert("Wrong");
         }
         nextQuestion();
     }
@@ -109,8 +115,8 @@ $(document).ready(function() {
     });
 
     $('.answerButton').click(function(){
-        
-        checkAnswer();
+         var userAnswer = $(this).text()
+        checkAnswer(userAnswer);
     });
 
 
