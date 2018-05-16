@@ -6,10 +6,16 @@ $(document).ready(function() {
 //VARIABLES
 //========================================================================================================================
 
+    var intervalId;
     var SECOND = 1000;
+    var time = 30;
 
-    var questionArr = [];
-    var answerArr = [];
+
+    var totalCorrect = 0;
+    var totalWrong = 0;
+
+    var questionBankArr = [];
+    var answerBankArr = [];
 
     var question1 = {
         question: "Which is NOT one of the four main beer ingredients?",
@@ -35,6 +41,14 @@ $(document).ready(function() {
         wrongAnswer3: "Bell's Brewery"
     };
 
+    var question4 = {
+        question: "How many pints in a keg?",
+        correctAnswer: "124 pints",
+        wrongAnswer1: "236 pints",
+        wrongAnswer2: "52 pints",
+        wrongAnswer3: "98 pints"
+    };
+
 
 
 
@@ -44,11 +58,43 @@ $(document).ready(function() {
 
     function startGame() {
         console.log("game started");
+        intervalId = setInterval(countdown, SECOND);
+
+    }
+
+
+
+    function countdown() {
+        if (time >= 0) {
+            console.log(time);
+            $("#timer").text(time + " seconds");
+            time--;
+        }
+        else {
+            clearInterval(countdown);
+        }
     }
 
 
 
 
+
+
+
+    function nextQuestion() {
+
+    }
+
+
+    function checkAnswer() {
+        if(userAnswer === correctAnswer){
+            totalCorrect++;
+        }
+        else {
+            totalWrong++;
+        }
+        nextQuestion();
+    }
 
 
 
@@ -62,7 +108,9 @@ $(document).ready(function() {
         startGame();
     });
 
-
+    $('.answerButton').click(function(){
+        checkAnswer();
+    });
 
 
 
