@@ -18,16 +18,13 @@ $(document).ready(function() {
 
     questionNum = 0;
 
-    // var questionBankArr = [question1, question2, question3, question4];
     var answerBankArr = [];
 
 //========================================================================================================================
 //TRIVIA QUESTION BANK
 //========================================================================================================================
 
-
 var questionBankArr = [
-
 
     question1 = {
         question: "Which is NOT one of the four main beer ingredients?",
@@ -104,31 +101,8 @@ var questionBankArr = [
 //FUNCTIONS
 //========================================================================================================================
 
-    questionNum = 0;
-
-
     function nextQuestion() {
         timer.start();
-
-        // // Display Question
-        //     $('#roundQuestion').text(question1.question);
-        // // Display answers at random 4 spaces
-        //     $('.answer1').text(question1.correctAnswer);
-        //     $('.answer2').text(question1.wrongAnswer1);
-        //     $('.answer3').text(question1.wrongAnswer2);
-        //     $('.answer4').text(question1.wrongAnswer3);
-
-        // for(var i = 0; i < questionBankArr.length; i++){
-        //     $('#roundQuestion').text(questionBankArr[i].question);
-        //     $('.answer1').text(questionBankArr[i].correctAnswer);
-        //     $('.answer2').text(questionBankArr[i].wrongAnswer1);
-        //     $('.answer3').text(questionBankArr[i].wrongAnswer2);
-        //     $('.answer4').text(questionBankArr[i].wrongAnswer3);
-
-        //     return questionBankArr[i].correctAnswer;
-        // }
-
-
 
         for(var i = questionNum; i < questionBankArr.length; i++){
             $('#roundQuestion').text(questionBankArr[i].question);
@@ -139,21 +113,7 @@ var questionBankArr = [
 
             return questionBankArr[i].correctAnswer;
         }
-        
-
-
-
-
     }
-
-
-
-
-
-
-
-
-
 
     function checkAnswer(userAnswer, answer) {
         if(userAnswer === answer){
@@ -172,8 +132,6 @@ var questionBankArr = [
         timer.stop();
         alert("Time's Up!");
     }
-
-
 
 //========================================================================================================================
 // PLAY GAME
