@@ -15,10 +15,10 @@ $(document).ready(function() {
 
     var totalCorrect = 0;
     var totalWrong = 0;
+    var totalNoAnswer = 0;
 
-    questionNum = 0;
+    var questionNum = 0;
 
-    var answerBankArr = [];
 
 //========================================================================================================================
 //TRIVIA QUESTION BANK
@@ -102,27 +102,33 @@ var questionBankArr = [
 //========================================================================================================================
 
     function nextQuestion() {
-        timer.start();
 
-        for(var i = questionNum; i < questionBankArr.length; i++){
-            $('#roundQuestion').text(questionBankArr[i].question);
-            $('.answer1').text(questionBankArr[i].correctAnswer);
-            $('.answer2').text(questionBankArr[i].wrongAnswer1);
-            $('.answer3').text(questionBankArr[i].wrongAnswer2);
-            $('.answer4').text(questionBankArr[i].wrongAnswer3);
+       if(questionNum === questionBankArr.length){
+           endGame();
+       }
+       else {
+            timer.start();
 
-            return questionBankArr[i].correctAnswer;
+            for(var i = questionNum; i < questionBankArr.length; i++){
+                $('#roundQuestion').text(questionBankArr[i].question);
+                $('.answer1').text(questionBankArr[i].correctAnswer);
+                $('.answer2').text(questionBankArr[i].wrongAnswer1);
+                $('.answer3').text(questionBankArr[i].wrongAnswer2);
+                $('.answer4').text(questionBankArr[i].wrongAnswer3);
+
+                return questionBankArr[i].correctAnswer;
+            }
         }
     }
 
-    function checkAnswer(userAnswer, answer) {
-        if(userAnswer === answer){
+    function checkAnswer(userAnswer, correct) {
+        if(userAnswer === correct){
             totalCorrect++;
-            alert("Correct");
+            console.log("Correct");
         }
         else {
             totalWrong++;
-            alert("Wrong");
+            console.log("Wrong");
         }
         timer.reset();
         nextQuestion();
@@ -130,8 +136,44 @@ var questionBankArr = [
 
     function noTimeLeft() {
         timer.stop();
+        totalNoAnswer++;
         alert("Time's Up!");
     }
+
+
+    function questionResult(){
+
+
+    }
+
+
+    function endGame() {
+        timer.stop();
+
+        $('.answerButton').prop('disabled', true);
+        $('.answer1').text("You finished the game!");
+        $('.answer2').text("Correct: " + totalCorrect);
+        $('.answer3').text("Wrong: " + totalWrong);
+        $('.answer4').text("No Answer: " + totalNoAnswer);
+
+        $('#roundQuestion').html('<button type="button" id="startGame" class="btn btn-primary">New Game</button>');
+        
+        
+        $('#startGame').click(function(){
+            resetVars();
+            nextQuestion();
+        });
+
+    }
+
+    function resetVars(){
+        $('.answerButton').prop('disabled', false);
+        totalCorrect = 0;
+        totalWrong = 0;
+        totalNoAnswer = 0;
+        questionNum = 0;
+    }
+
 
 //========================================================================================================================
 // PLAY GAME
@@ -147,8 +189,6 @@ var questionBankArr = [
          questionNum++;
         checkAnswer(userAnswer, correct);
     });
-
-
 
 
 });
