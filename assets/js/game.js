@@ -6,8 +6,6 @@ $(document).ready(function() {
 //========================================================================================================================
     //  Variable to hold setInterval that runs timer
     var intervalId;
-
-    // prevents the timer from being sped up unnecessarily
     var timerRunning = false;
 
     var SECOND = 1000;
@@ -103,13 +101,18 @@ var questionBankArr = [
 
     function nextQuestion() {
         timer.reset();
-
+        
+        
        if(questionNum === questionBankArr.length){
            endGame();
        }
        else {
-        $('.answerButton').prop('disabled', false);
+            // shuffleAnswers();
+            
+            $('.answerButton').prop('disabled', false);
             timer.start();
+            $('.roundAnswers').show();
+            shuffleShuffle();
 
             for(var i = questionNum; i < questionBankArr.length; i++){
                 $('#roundQuestion').text(questionBankArr[i].question);
@@ -135,8 +138,8 @@ var questionBankArr = [
             $('#roundQuestion').text("Wrong!");
         }
 
-        setTimeout(nextQuestion, SECOND * 5);
-        // timer.reset();
+        setTimeout(nextQuestion, SECOND * 2);
+        
     }
 
     function noTimeLeft() {
@@ -153,7 +156,7 @@ var questionBankArr = [
 
     function endGame() {
         timer.stop();
-
+        //Display results after the game is over
         $('.answerButton').prop('disabled', true);
         $('.answer1').text("You finished the game!");
         $('.answer2').text("Correct: " + totalCorrect);
@@ -162,7 +165,7 @@ var questionBankArr = [
 
         $('#roundQuestion').html('<button type="button" id="startGame" class="btn btn-primary">New Game</button>');
         
-        
+        //Resets the game
         $('#startGame').click(function(){
             resetVars();
             nextQuestion();
@@ -179,6 +182,49 @@ var questionBankArr = [
     }
 
 
+
+
+//Fisher-Yates shuffling algorithm
+
+    // function shuffleAnswers(){
+    //     $("#shuffle").each(function(){
+    //         var divs = $(this).find('.newSpot');
+    //         for(var i = 0; i < divs.length; i++) $(divs[i]).remove(); 
+
+    //         var i = divs.length;
+    //         if ( i == 0 )return false;
+    //         while ( --i ) {
+    //            var j = Math.floor( Math.random() * ( i + 1 ) );
+    //            var tempi = divs[i];
+    //            var tempj = divs[j];
+    //            divs[i] = tempj;
+    //            divs[j] = tempi;
+    //          }
+    //         for(var i = 0; i < divs.length; i++) $(divs[i]).appendTo(this);
+    //     });
+    // }    
+
+
+
+
+function shuffleShuffle(){
+    var parent = $("#shuffle");
+    var divs = parent.children();
+    while (divs.length) {
+        parent.append(divs.splice(Math.floor(Math.random() * divs.length), 1)[0]);
+    }
+}
+    // $(function () {
+    //     var parent = $("#shuffle");
+    //     var divs = parent.children();
+    //     while (divs.length) {
+    //         parent.append(divs.splice(Math.floor(Math.random() * divs.length), 1)[0]);
+    //     }
+    // });
+
+
+
+
 //========================================================================================================================
 // PLAY GAME
 //========================================================================================================================
@@ -188,14 +234,13 @@ var questionBankArr = [
     });
 
     $('.answerButton').click(function(){
-         var userAnswer = $(this).text()
+         var userAnswer = $(this).text();
          var correct = nextQuestion();
          questionNum++;
          timer.stop();
          $('.answerButton').prop('disabled', true);
-
+        $('.roundAnswers').hide();
         checkAnswer(userAnswer, correct);
     });
-
 
 });
