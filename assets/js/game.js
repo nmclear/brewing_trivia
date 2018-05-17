@@ -82,8 +82,15 @@ var timer = {
   },
 
   count: function() {
-    timer.time--;
-    $("#timerDisplay").text(timer.time + " seconds");
+    if (timer.time > 0){
+        timer.time--;
+        $("#timerDisplay").text(timer.time + " seconds");
+        console.log(timer.time);
+    }
+    else {
+        timer.stop();
+        alert("Time's Up!");
+    }
   }
 
 };
@@ -93,40 +100,11 @@ var timer = {
 //FUNCTIONS
 //========================================================================================================================
 
-    // function startGame() {
-    //     console.log("game started");
-    //     timer.start();
-    //     nextQuestion();
-    // }
-
-    function countdown() {
-        if (time >= 0) {
-            console.log(time);
-            stop();
-            time--;
-        }
-        else {
-            clearInterval(countdown);
-        }
-    }
-
-    // function resetTime(){
-    //     clearInterval(intervalId);
-    //     time = 30;
-    // }
-
-    // function startTime(){
-    //     time = 30;
-    //     intervalId = setInterval(countdown, SECOND);
-    // }
 
     function nextQuestion() {
-        //Start Round
-        // time = 30;
-        // intervalId = setInterval(countdown, SECOND);
+
+
         timer.start();
-
-
 
         // Display Question
             $('#roundQuestion').text(question1.question);
@@ -162,10 +140,6 @@ var timer = {
     $('#startGame').click(function(){
         nextQuestion();
     });
-
-
-    $("#start").click(timer.start);
-
 
     $('.answerButton').click(function(){
          var userAnswer = $(this).text()
