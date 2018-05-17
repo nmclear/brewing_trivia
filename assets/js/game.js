@@ -70,7 +70,7 @@ var questionBankArr = [
 
         reset: function() {
             timer.time = 30;
-            $("#timerDisplay").text("30");
+            $("#timerDisplay").text("Time Remaining: 30 seconds");
         },
 
         start: function() {
@@ -102,11 +102,13 @@ var questionBankArr = [
 //========================================================================================================================
 
     function nextQuestion() {
+        timer.reset();
 
        if(questionNum === questionBankArr.length){
            endGame();
        }
        else {
+        $('.answerButton').prop('disabled', false);
             timer.start();
 
             for(var i = questionNum; i < questionBankArr.length; i++){
@@ -125,25 +127,27 @@ var questionBankArr = [
         if(userAnswer === correct){
             totalCorrect++;
             console.log("Correct");
+            $('#roundQuestion').text("Correct!");
         }
         else {
             totalWrong++;
             console.log("Wrong");
+            $('#roundQuestion').text("Wrong!");
         }
-        timer.reset();
-        nextQuestion();
+
+        setTimeout(nextQuestion, SECOND * 5);
+        // timer.reset();
     }
 
     function noTimeLeft() {
         timer.stop();
+
+        questionNum++;
         totalNoAnswer++;
-        alert("Time's Up!");
-    }
 
-
-    function questionResult(){
-
-
+        $('.answerButton').prop('disabled', true);
+        $('#roundQuestion').text("Out of time!");
+        setTimeout(nextQuestion, SECOND * 5);
     }
 
 
@@ -187,6 +191,9 @@ var questionBankArr = [
          var userAnswer = $(this).text()
          var correct = nextQuestion();
          questionNum++;
+         timer.stop();
+         $('.answerButton').prop('disabled', true);
+
         checkAnswer(userAnswer, correct);
     });
 
