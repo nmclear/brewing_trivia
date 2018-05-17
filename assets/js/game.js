@@ -6,7 +6,7 @@ $(document).ready(function() {
 //VARIABLES
 //========================================================================================================================
 
-    var intervalId;
+    // var intervalId;
     var SECOND = 1000;
     var time = 30;
 
@@ -49,23 +49,60 @@ $(document).ready(function() {
         wrongAnswer3: "98 pints"
     };
 
+//========================================================================================================================
+//TIMER OBJECT
+//========================================================================================================================
 
+
+//  Variable that will hold our setInterval that runs the timer
+var intervalId;
+  
+// prevents the timer from being sped up unnecessarily
+var timerRunning = false;
+
+// Our timer object
+var timer = {
+  time: 30,
+
+  reset: function() {
+    timer.time = 30;
+    $("#timerDisplay").text("30");
+  },
+
+  start: function() {
+    if (!timerRunning) {
+      intervalId = setInterval(timer.count, SECOND);
+      timerRunning = true;
+    }
+  },
+
+  stop: function() {
+    clearInterval(intervalId);
+    timerRunning = false;
+  },
+
+  count: function() {
+    timer.time--;
+    $("#timerDisplay").text(timer.time + " seconds");
+  }
+
+};
 
 
 //========================================================================================================================
 //FUNCTIONS
 //========================================================================================================================
 
-    function startGame() {
-        console.log("game started");
-        // intervalId = setInterval(countdown, SECOND);
-        nextQuestion();
-    }
+    // function startGame() {
+    //     console.log("game started");
+    //     timer.start();
+    //     nextQuestion();
+    // }
 
     function countdown() {
         if (time >= 0) {
             console.log(time);
-            $('#timer').text(time + ' seconds');
+            stop();
             time--;
         }
         else {
@@ -73,12 +110,23 @@ $(document).ready(function() {
         }
     }
 
+    // function resetTime(){
+    //     clearInterval(intervalId);
+    //     time = 30;
+    // }
 
+    // function startTime(){
+    //     time = 30;
+    //     intervalId = setInterval(countdown, SECOND);
+    // }
 
     function nextQuestion() {
         //Start Round
-        time = 30;
-        intervalId = setInterval(countdown, SECOND);
+        // time = 30;
+        // intervalId = setInterval(countdown, SECOND);
+        timer.start();
+
+
 
         // Display Question
             $('#roundQuestion').text(question1.question);
@@ -99,6 +147,7 @@ $(document).ready(function() {
             totalWrong++;
             alert("Wrong");
         }
+        timer.reset();
         nextQuestion();
     }
 
@@ -111,8 +160,12 @@ $(document).ready(function() {
 //========================================================================================================================
 
     $('#startGame').click(function(){
-        startGame();
+        nextQuestion();
     });
+
+
+    $("#start").click(timer.start);
+
 
     $('.answerButton').click(function(){
          var userAnswer = $(this).text()
