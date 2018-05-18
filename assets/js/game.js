@@ -25,7 +25,7 @@ var questionBankArr = [
 
     question1 = {
         question: "Which is NOT one of the four main beer ingredients?",
-        correctAnswer: "Grapes",
+        correctAnswer: "Rice",
         wrongAnswer1: "Hops",
         wrongAnswer2: "Barley",
         wrongAnswer3: "Yeast"
@@ -53,10 +53,56 @@ var questionBankArr = [
         wrongAnswer1: "236 pints",
         wrongAnswer2: "52 pints",
         wrongAnswer3: "98 pints"
+    },
+
+    question5 = {
+        question: "What is the German Brewing Purity Law of 1516 called?",
+        correctAnswer: "Reinheitsgebot",
+        wrongAnswer1: "Augenblick",
+        wrongAnswer2: "Weizenbock",
+        wrongAnswer3: "Höhlenbier"
+    },
+
+    question6 = {
+        question: "Which is NOT a brewing vessel?",
+        correctAnswer: "Still",
+        wrongAnswer1: "Mash Tun",
+        wrongAnswer2: "Fermenter",
+        wrongAnswer3: "Boil Kettle"
+    },
+
+    question7 = {
+        question: "IBU is the abbreviation for _____.",
+        correctAnswer: "International Bitterness Unit",
+        wrongAnswer1: "International Brewing Union",
+        wrongAnswer2: "intercontinental Beer Usage",
+        wrongAnswer3: "Interior Bitter Upcharge"
+    },
+
+    question8 = {
+        question: "What U.S. State has the most craft breweries?",
+        correctAnswer: "California",
+        wrongAnswer1: "Washington",
+        wrongAnswer2: "Colorado",
+        wrongAnswer3: "Oregon"
+    },
+
+    question9 = {
+        question: "How many barrels (31 gal) of beer did U.S. craft breweries produced in 2017?",
+        correctAnswer: "25,000,000 bbls",
+        wrongAnswer1: "36,000,000 bbls",
+        wrongAnswer2: "12,000,000 bbls",
+        wrongAnswer3: "8,000,000 bbls"
+    },
+
+    question10 = {
+        question: "Which is NOT a phase in the brewing process?",
+        correctAnswer: "Pressing",
+        wrongAnswer1: "Sparging",
+        wrongAnswer2: "Fermentation",
+        wrongAnswer3: "Milling"
     }
-
 ];
-
 
 //========================================================================================================================
 //TIMER OBJECT
