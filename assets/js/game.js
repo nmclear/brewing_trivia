@@ -126,6 +126,7 @@ var questionBankArr = [
             totalCorrect++;
             console.log("Correct");
             $('#roundQuestion').text("Correct!");
+            $('.wrongImage').hide();
             $('.correctImage').show();
             
         }
@@ -135,6 +136,7 @@ var questionBankArr = [
             $('#roundQuestion').text("Wrong!");
             $('#displayCorrectAnswer').text("Correct Answer: " + correct);
             $('.correctImage').hide();
+            $('.wrongImage').show();
         }
         $('#roundExtras').show();
         $("#timerDisplay").text(""); 
