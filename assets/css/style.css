@@ -4,12 +4,39 @@
 
 body {
     text-align: center;
-    background: black;
+    background-image: url("../images/abstract-background-dark-247671.jpg");
+    background-attachment: fixed;
+    background-size: cover;
 }
 
+.gameHeader {
+    margin-top: 40px;
+    font-size: 80px;
+    font-family: 'Delius', cursive;
+}
 
 .container {
-    width: 80%;
-    background: skyblue;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    width: 70%;
+    height: 723px;
+    background-image: url("../images/cork-wallet/cork-wallet.png");
 }
 
+.shadow {
+    -webkit-box-shadow: 1px 1px 1px 1px #744d25;
+    -moz-box-shadow:    1px 1px 1px 1px #744d25;
+    box-shadow:         1px 1px 1px 1px #744d25;
+  }
+
+  #startGame {
+      color: #ffffff;
+    border-radius: 25px;
+    margin: 200px auto;
+    padding: 0;
+    width: 60%;
+    height: 80px;
+    line-height: 80px;
+    font-size: 45px;
+    background-image: url("../images/abstract-background-dark-247671.jpg");
+  }

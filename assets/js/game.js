@@ -17,7 +17,6 @@ $(document).ready(function() {
 
     var questionNum = 0;
 
-
 //========================================================================================================================
 //TRIVIA QUESTION BANK
 //========================================================================================================================
@@ -70,19 +69,16 @@ var questionBankArr = [
             timer.time = 30;
             $("#timerDisplay").text("Time Remaining: 30 seconds");
         },
-
         start: function() {
             if (!timerRunning) {
             intervalId = setInterval(timer.count, SECOND);
             timerRunning = true;
             }
         },
-
         stop: function() {
             clearInterval(intervalId);
             timerRunning = false;
         },
-
         count: function() {
             if (timer.time > 0){
                 timer.time--;
@@ -102,16 +98,13 @@ var questionBankArr = [
     function nextQuestion() {
         timer.reset();
         
-        
        if(questionNum === questionBankArr.length){
            endGame();
        }
        else {
-            // shuffleAnswers();
-            
+            $('.roundAnswers').show();    
             $('.answerButton').prop('disabled', false);
             timer.start();
-            $('.roundAnswers').show();
             shuffleShuffle();
 
             for(var i = questionNum; i < questionBankArr.length; i++){
@@ -137,9 +130,7 @@ var questionBankArr = [
             console.log("Wrong");
             $('#roundQuestion').text("Wrong!");
         }
-
         setTimeout(nextQuestion, SECOND * 2);
-        
     }
 
     function noTimeLeft() {
@@ -181,53 +172,19 @@ var questionBankArr = [
         questionNum = 0;
     }
 
-
-
-
-//Fisher-Yates shuffling algorithm
-
-    // function shuffleAnswers(){
-    //     $("#shuffle").each(function(){
-    //         var divs = $(this).find('.newSpot');
-    //         for(var i = 0; i < divs.length; i++) $(divs[i]).remove(); 
-
-    //         var i = divs.length;
-    //         if ( i == 0 )return false;
-    //         while ( --i ) {
-    //            var j = Math.floor( Math.random() * ( i + 1 ) );
-    //            var tempi = divs[i];
-    //            var tempj = divs[j];
-    //            divs[i] = tempj;
-    //            divs[j] = tempi;
-    //          }
-    //         for(var i = 0; i < divs.length; i++) $(divs[i]).appendTo(this);
-    //     });
-    // }    
-
-
-
-
-function shuffleShuffle(){
-    var parent = $("#shuffle");
-    var divs = parent.children();
-    while (divs.length) {
-        parent.append(divs.splice(Math.floor(Math.random() * divs.length), 1)[0]);
+    function shuffleShuffle(){
+        var parent = $("#shuffle");
+        var divs = parent.children();
+        while (divs.length) {
+            parent.append(divs.splice(Math.floor(Math.random() * divs.length), 1)[0]);
+        }
     }
-}
-    // $(function () {
-    //     var parent = $("#shuffle");
-    //     var divs = parent.children();
-    //     while (divs.length) {
-    //         parent.append(divs.splice(Math.floor(Math.random() * divs.length), 1)[0]);
-    //     }
-    // });
-
-
-
 
 //========================================================================================================================
 // PLAY GAME
 //========================================================================================================================
+    $('.roundAnswers').hide();
+
 
     $('#startGame').click(function(){
         nextQuestion();
