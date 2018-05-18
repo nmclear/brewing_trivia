@@ -127,6 +127,7 @@ var questionBankArr = [
             console.log("Correct");
             $('#roundQuestion').text("Correct!");
             $('.wrongImage').hide();
+            $('.noTimeImage').hide();
             $('.correctImage').show();
             
         }
@@ -136,6 +137,7 @@ var questionBankArr = [
             $('#roundQuestion').text("Wrong!");
             $('#displayCorrectAnswer').text("Correct Answer: " + correct);
             $('.correctImage').hide();
+            $('.noTimeImage').hide();
             $('.wrongImage').show();
         }
         $('#roundExtras').show();
@@ -152,8 +154,10 @@ var questionBankArr = [
         totalNoAnswer++;
 
         $('#shuffle').hide();
+        $('.wrongImage').hide();
         $('.correctImage').hide();
-        $('#roundExtras').show(); 
+        $('#roundExtras').show();
+        $('.noTimeImage').show(); 
 
         $("#timerDisplay").text("");
         $('.answerButton').prop('disabled', true);
