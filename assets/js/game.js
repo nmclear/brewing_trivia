@@ -63,10 +63,10 @@ var questionBankArr = [
 //========================================================================================================================
 
     var timer = {
-        time: 10,
+        time: 30,
 
         reset: function() {
-            timer.time = 10;
+            timer.time = 30;
             $("#timerDisplay").text("30 seconds");
         },
         start: function() {
@@ -83,7 +83,6 @@ var questionBankArr = [
             if (timer.time > 0){
                 timer.time--;
                 $("#timerDisplay").text(timer.time + " seconds");
-                console.log(timer.time);
             }
             else {
                 noTimeLeft();
@@ -124,7 +123,6 @@ var questionBankArr = [
     function checkAnswer(userAnswer, correct) {
         if(userAnswer === correct){
             totalCorrect++;
-            console.log("Correct");
             $('#roundQuestion').text("Correct!");
             $('.wrongImage').hide();
             $('.noTimeImage').hide();
@@ -133,7 +131,6 @@ var questionBankArr = [
         }
         else {
             totalWrong++;
-            console.log("Wrong");
             $('#roundQuestion').text("Wrong!");
             $('#displayCorrectAnswer').text("Correct Answer: " + correct);
             $('.correctImage').hide();
