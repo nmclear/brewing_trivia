@@ -59,7 +59,16 @@ body {
     font-size: 45px;
   }
 
+  #newGame {
+      margin-top: 10px;
+      font-family: 'Delius', cursive;
+      font-size: 45px;
+  }
 
 #startGame:hover {
     background: yellow;
+}
+
+#displayResults {
+    font-size: 35px;
 }

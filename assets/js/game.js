@@ -63,10 +63,10 @@ var questionBankArr = [
 //========================================================================================================================
 
     var timer = {
-        time: 30,
+        time: 10,
 
         reset: function() {
-            timer.time = 30;
+            timer.time = 10;
             $("#timerDisplay").text("30 seconds");
         },
         start: function() {
@@ -102,7 +102,8 @@ var questionBankArr = [
            endGame();
        }
        else {
-            $('.roundAnswers').show();    
+            $('#roundExtras').hide();
+            $('#shuffle').show();    
             $('.answerButton').prop('disabled', false);
             timer.start();
             shuffleShuffle();
@@ -130,6 +131,7 @@ var questionBankArr = [
             console.log("Wrong");
             $('#roundQuestion').text("Wrong!");
         }
+        $('#roundExtras').show(); 
         setTimeout(nextQuestion, SECOND * 2);
     }
 
@@ -139,26 +141,36 @@ var questionBankArr = [
         questionNum++;
         totalNoAnswer++;
 
+        $('#shuffle').hide();
+        $('#roundExtras').show(); 
+
         $('.answerButton').prop('disabled', true);
         $('#roundQuestion').text("Out of time!");
-        setTimeout(nextQuestion, SECOND * 5);
+        setTimeout(nextQuestion, SECOND * 2);
     }
 
 
     function endGame() {
         timer.stop();
         //Display results after the game is over
-        $('.answerButton').prop('disabled', true);
-        $('.answer1').text("You finished the game!");
-        $('.answer2').text("Correct: " + totalCorrect);
-        $('.answer3').text("Wrong: " + totalWrong);
-        $('.answer4').text("No Answer: " + totalNoAnswer);
+        // $('.answerButton').prop('disabled', true);
+        $('#shuffle').hide();
+        $('#roundExtras').hide(); 
+        $('#displayResults').show();
 
-        $('#roundQuestion').html('<button type="button" id="startGame" class="btn btn-primary">New Game</button>');
+        //print results
+        $('.resultFinish').text("Game Over!");
+        $('.resultCorrect').text("Correct: " + totalCorrect);
+        $('.resultWrong').text("Wrong: " + totalWrong);
+        $('.resultNoAnswer').text("No Answer: " + totalNoAnswer);
+
+        //display new game button
+        $('#roundQuestion').html('<button type="button" id="newGame" class="btn btn-light">New Game</button>');
         
-        //Resets the game
-        $('#startGame').click(function(){
+        //Resets the game on click
+        $('#newGame').click(function(){
             resetVars();
+            $('#displayResults').hide();
             nextQuestion();
         });
 
@@ -183,7 +195,8 @@ var questionBankArr = [
 //========================================================================================================================
 // PLAY GAME
 //========================================================================================================================
-    $('.roundAnswers').hide();
+    $('#shuffle').hide();
+    $('#roundExtras').hide();
 
 
     $('#startGame').click(function(){
@@ -196,7 +209,7 @@ var questionBankArr = [
          questionNum++;
          timer.stop();
          $('.answerButton').prop('disabled', true);
-        $('.roundAnswers').hide();
+        $('#shuffle').hide();
         checkAnswer(userAnswer, correct);
     });
 
