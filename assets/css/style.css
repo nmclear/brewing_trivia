@@ -29,14 +29,37 @@ body {
     box-shadow:         1px 1px 1px 1px #744d25;
   }
 
-  #startGame {
-      color: #ffffff;
-    border-radius: 25px;
-    margin: 200px auto;
+
+#timerDisplay {
+    font-size: 35px;
+}
+
+
+ #roundQuestion {
+     margin-bottom: 20px;
+     font-size: 30px;
+ } 
+
+
+.btn {
+    font-size: 35px;
+    color: #dddad6;
+    background: black;
     padding: 0;
-    width: 60%;
-    height: 80px;
-    line-height: 80px;
+    width: 50%;
+    height: 70px;
+    line-height: 70px;
+    border-radius: 25px;
+    margin: 10px auto;
+}
+
+#startGame {
+    margin: 200px auto;
+    font-family: 'Delius', cursive;
     font-size: 45px;
-    background-image: url("../images/abstract-background-dark-247671.jpg");
   }
+
+
+#startGame:hover {
+    background: yellow;
+}

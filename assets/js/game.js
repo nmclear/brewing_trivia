@@ -67,7 +67,7 @@ var questionBankArr = [
 
         reset: function() {
             timer.time = 30;
-            $("#timerDisplay").text("Time Remaining: 30 seconds");
+            $("#timerDisplay").text("30 seconds");
         },
         start: function() {
             if (!timerRunning) {
@@ -82,7 +82,7 @@ var questionBankArr = [
         count: function() {
             if (timer.time > 0){
                 timer.time--;
-                $("#timerDisplay").text("Time Remaining: " + timer.time + " seconds");
+                $("#timerDisplay").text(timer.time + " seconds");
                 console.log(timer.time);
             }
             else {
@@ -201,3 +201,4 @@ var questionBankArr = [
     });
 
 });
+
