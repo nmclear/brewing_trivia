@@ -102,6 +102,7 @@ var questionBankArr = [
            endGame();
        }
        else {
+            $('#displayCorrectAnswer').text("");
             $('#roundExtras').hide();
             $('#shuffle').show();    
             $('.answerButton').prop('disabled', false);
@@ -125,15 +126,22 @@ var questionBankArr = [
             totalCorrect++;
             console.log("Correct");
             $('#roundQuestion').text("Correct!");
+            $('.correctImage').show();
+            
         }
         else {
             totalWrong++;
             console.log("Wrong");
             $('#roundQuestion').text("Wrong!");
+            $('#displayCorrectAnswer').text("Correct Answer: " + correct);
+            $('.correctImage').hide();
         }
-        $('#roundExtras').show(); 
-        setTimeout(nextQuestion, SECOND * 2);
+        $('#roundExtras').show();
+        $("#timerDisplay").text(""); 
+        setTimeout(nextQuestion, SECOND * 4);
     }
+
+
 
     function noTimeLeft() {
         timer.stop();
@@ -142,16 +150,19 @@ var questionBankArr = [
         totalNoAnswer++;
 
         $('#shuffle').hide();
+        $('.correctImage').hide();
         $('#roundExtras').show(); 
 
+        $("#timerDisplay").text("");
         $('.answerButton').prop('disabled', true);
         $('#roundQuestion').text("Out of time!");
-        setTimeout(nextQuestion, SECOND * 2);
+        setTimeout(nextQuestion, SECOND * 4);
     }
 
 
     function endGame() {
         timer.stop();
+        $("#timerDisplay").text("");
         //Display results after the game is over
         // $('.answerButton').prop('disabled', true);
         $('#shuffle').hide();

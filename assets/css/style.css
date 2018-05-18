@@ -72,3 +72,11 @@ body {
 #displayResults {
     font-size: 35px;
 }
+
+#displayCorrectAnswer {
+    font-size: 30px;
+}
+
+.correctImage {
+    width: 60%;    
+}
