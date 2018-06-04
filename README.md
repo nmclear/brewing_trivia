@@ -1,8 +1,4 @@
-# homework_5_trivia
-Homework 5 Trivia Game
-
-
-## Brewing Trivia Game
+# Brewing Trivia Game
 
 Step right up and test your brewing trivia!
 
